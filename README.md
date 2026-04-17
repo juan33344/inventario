@@ -60,6 +60,22 @@ Si cambias usuario/contraseña, actualiza `config/db.js`.
 - **Frontend**: HTML, CSS, JavaScript (Vanilla)
 - **Cliente MySQL**: mysql2
 
+## Ramas colaborativas para compañeros
+
+Se crearon dos ramas a partir de `main` para que los compañeros trabajen individualmente:
+
+- `rama-compa1`
+- `rama-compa2`
+
+Cada compañero debe:
+
+1. Clonar el repositorio.
+2. Cambiar a su rama asignada: `git checkout rama-compa1` o `git checkout rama-compa2`.
+3. Hacer sus cambios y commits.
+4. Enviar los cambios con `git push origin rama-compa1` o `git push origin rama-compa2`.
+
+Posteriormente, el dueño del repositorio podrá integrar los cambios a `main` mediante merge o Pull Request.
+
 ## Nota
 
 Este proyecto usa MySQL como base de datos y está diseñado para funcionar junto con XAMPP para el servidor de base de datos. Asegúrate de que el puerto 3306 esté disponible y que MySQL esté ejecutándose.
