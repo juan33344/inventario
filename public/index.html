@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario CRUD - Node.js</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Inventario de Productos</h1>
+            <button id="addProductBtn" class="button">Agregar producto</button>
+        </header>
+
+        <div id="alertContainer"></div>
+
+        <table id="productsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="productsTableBody">
+                <tr><td colspan="6" class="loading">Cargando productos...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para crear/editar producto -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Agregar producto</h2>
+            <div id="modalAlert"></div>
+            <form id="productForm">
+                <input type="hidden" id="productId" name="id">
+                <label>Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label>Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+
+                <label>Precio</label>
+                <input type="number" step="0.01" id="precio" name="precio" required>
+
+                <label>Cantidad</label>
+                <input type="number" id="cantidad" name="cantidad" required>
+
+                <div class="actions">
+                    <button type="submit" id="submitBtn">Guardar</button>
+                    <button type="button" id="cancelBtn" class="secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
