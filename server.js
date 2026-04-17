@@ -1,14 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+﻿const express = require('express');
 const methodOverride = require('method-override');
 const path = require('path');
+const { initDatabase } = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride('_method'));
 
 // Servir archivos estáticos
@@ -23,7 +23,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+// Iniciar servidor sólo después de inicializar la DB
+initDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Error inicializando la base de datos:', err);
+  });

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db');
+const { pool } = require('../config/db');
 
 // Obtener todos los productos
 router.get('/', (req, res) => {
-  db.query('SELECT * FROM productos ORDER BY id DESC', (err, results) => {
+  pool.query('SELECT * FROM productos ORDER BY id DESC', (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Error al obtener productos' });
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 // Obtener un producto por ID
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  db.query('SELECT * FROM productos WHERE id = ?', [id], (err, results) => {
+  pool.query('SELECT * FROM productos WHERE id = ?', [id], (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Error al obtener producto' });
@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
     return res.status(400).json({ errors });
   }
 
-  db.query(
+  pool.query(
     'INSERT INTO productos (nombre, descripcion, precio, cantidad) VALUES (?, ?, ?, ?)',
     [nombre.trim(), descripcion || '', precio, cantidad],
     (err, result) => {
@@ -80,7 +80,7 @@ router.put('/:id', (req, res) => {
     return res.status(400).json({ errors });
   }
 
-  db.query(
+  pool.query(
     'UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, cantidad = ? WHERE id = ?',
     [nombre.trim(), descripcion || '', precio, cantidad, id],
     (err, result) => {
@@ -99,7 +99,7 @@ router.put('/:id', (req, res) => {
 // Eliminar un producto
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  db.query('DELETE FROM productos WHERE id = ?', [id], (err, result) => {
+  pool.query('DELETE FROM productos WHERE id = ?', [id], (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Error al eliminar producto' });

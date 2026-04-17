@@ -17,10 +17,12 @@ Aplicación básica de inventario usando Node.js, Express y MySQL con interfaz e
 
 1. Asegúrate de tener Node.js instalado (versión 14 o superior)
 2. Instala las dependencias: `npm install`
-3. **Inicia MySQL desde el panel de XAMPP**
-4. Importa `db.sql` usando phpMyAdmin (http://localhost/phpmyadmin) o la línea de comandos de MySQL
-5. Inicia el servidor: `npm start` o `npm run dev` (con nodemon para desarrollo)
+3. Abre el panel de XAMPP y asegúrate de iniciar **MySQL**.
+4. Importa `db.sql` usando **phpMyAdmin** (http://localhost/phpmyadmin) o la línea de comandos de MySQL.
+5. Inicia el servidor: `npm start` o `npm run dev` (con nodemon para desarrollo).
 6. Abre en el navegador: `http://localhost:3000`
+
+> Si tu XAMPP usa MySQL/MariaDB local, la aplicación ya está configurada para conectarse a `127.0.0.1:3306` con usuario `root` y contraseña vacía.
 
 ## Configuración de base de datos
 
